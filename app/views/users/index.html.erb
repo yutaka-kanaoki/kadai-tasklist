@@ -1,0 +1,14 @@
+<div class="text-center m-3">
+    <h3>ユーザーリスト</h3>
+    <% if @users.any? %>
+        <ul class="list-unstyled">
+            <% @users.each do |user| %>
+                <li><%= user.name %>
+                <%= link_to ':詳細', user_path(user.id) %></li>
+            <% end %>
+        </ul>
+    <% else %>
+        <p>No users</p>
+    <% end %>
+    <%= link_to '新規ユーザー登録', signup_path ,class:'btn btn-primary' %>
+</div>
