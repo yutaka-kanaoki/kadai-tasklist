@@ -49,6 +49,7 @@ before_action :rquire_user_logged_in
   
   def destroy
 
+    correct_user
     @task.destroy
     flash[:success] = 'タスクを削除しました'
     redirect_to tasks_url
@@ -65,6 +66,13 @@ before_action :rquire_user_logged_in
   
   def task_params
     params.require(:task).permit(:content, :status)
+  end
+  
+  def correct_user
+    @task = current_user.tasks.find_by(params[:id])
+    unless @task
+      redirect_to root_url
+    end
   end
     
 end
