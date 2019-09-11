@@ -70,7 +70,7 @@ before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
   def correct_user
    
-    if !current_user.tasks.find_by(params[:id])
+    unless current_user.tasks.find_by(params[:id])
       redirect_to root_url
     end
   end
